@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>隱私政策 - 財報紅綠燈 to Gemini</title>
+    <style>
+        body {
+            font-family: "Microsoft JhengHei", "微軟正黑體", Arial, sans-serif;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+        }
+        .highlight {
+            background: #e8f4f8;
+            padding: 15px;
+            border-left: 4px solid #3498db;
+            margin: 20px 0;
+        }
+        .section {
+            margin: 20px 0;
+        }
+        ul {
+            padding-left: 25px;
+        }
+        li {
+            margin: 10px 0;
+        }
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>隱私政策</h1>
+        <p><strong>最後更新日期：2025年12月29日</strong></p>
+        
+        <div class="highlight">
+            <strong>簡要說明：</strong>本擴充功能「財報紅綠燈 to Gemini」完全尊重您的隱私。我們不會收集、儲存或傳送您的任何個人資料到我們的伺服器。所有設定和資料都僅儲存在您的本地瀏覽器中。
+        </div>
+
+        <div class="section">
+            <h2>1. 資料收集與使用</h2>
+            <p>本擴充功能<strong>不會收集</strong>任何個人識別資訊。我們僅在您的本地瀏覽器中儲存以下設定：</p>
+            <ul>
+                <li><strong>自訂提示詞</strong>：您在設定頁面中輸入的提示詞內容</li>
+                <li><strong>偵錯模式開關</strong>：用於控制是否顯示除錯訊息</li>
+                <li><strong>股票代號連結開關</strong>：用於控制是否自動轉換股票代號為連結</li>
+                <li><strong>待貼上文字</strong>：當您右鍵選擇「傳送到 Gemini」時，暫存的文字內容（在貼上後立即刪除）</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>2. 資料儲存方式</h2>
+            <p>所有資料都使用瀏覽器的 <code>chrome.storage.local</code> API 儲存在您的本地裝置上。這些資料：</p>
+            <ul>
+                <li>僅存在於您的電腦或裝置中</li>
+                <li>不會上傳到任何遠端伺服器</li>
+                <li>不會與第三方分享</li>
+                <li>可以隨時透過移除擴充功能來完全刪除</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>3. 權限說明</h2>
+            <p>本擴充功能要求以下權限，說明如下：</p>
+            <ul>
+                <li><strong>storage</strong>：儲存您的設定和偏好（僅存於本地）</li>
+                <li><strong>activeTab</strong>：讀取當前分頁的內容，以便擷取您選取的財報資料</li>
+                <li><strong>contextMenus</strong>：在右鍵選單中新增「傳送到 Gemini」選項</li>
+                <li><strong>&lt;all_urls&gt;</strong>：允許在任何網頁上擷取財報資料（僅在您主動觸發時）</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>4. 外部網站連結</h2>
+            <p>本擴充功能會與以下外部網站互動：</p>
+            <ul>
+                <li><strong>https://gemini.google.com</strong>：將您選取的文字自動貼到 Gemini AI 的輸入框</li>
+                <li><strong>https://chatgpt.com</strong>：將您選取的文字自動貼到 ChatGPT 的輸入框</li>
+                <li><strong>https://gd.myftp.org/lb/lh.asp</strong>：當偵測到股票代號時，建立連結到財報紅綠燈網站</li>
+            </ul>
+            <p>這些互動僅在您主動使用擴充功能功能時才會發生。我們不會主動傳送任何資料到這些網站。</p>
+        </div>
+
+        <div class="section">
+            <h2>5. 第三方服務</h2>
+            <p>本擴充功能本身<strong>不使用</strong>任何第三方追蹤或分析服務。當您使用本擴充功能將資料傳送到 Gemini 或 ChatGPT 時，這些服務可能會依照其自己的隱私政策處理資料。請參閱：</p>
+            <ul>
+                <li><a href="https://policies.google.com/privacy" target="_blank">Google 隱私政策</a></li>
+                <li><a href="https://openai.com/privacy" target="_blank">OpenAI 隱私政策</a></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>6. 資料安全</h2>
+            <p>由於所有資料都僅儲存在您的本地裝置上，資料的安全性由您的瀏覽器和作業系統保護。我們建議：</p>
+            <ul>
+                <li>保持瀏覽器更新到最新版本</li>
+                <li>使用安全的電腦和網路環境</li>
+                <li>定期檢查瀏覽器的安全設定</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>7. 兒童隱私</h2>
+            <p>本擴充功能不針對13歲以下的兒童。我們不會故意收集兒童的個人資訊。</p>
+        </div>
+
+        <div class="section">
+            <h2>8. 隱私政策變更</h2>
+            <p>如果我們的隱私政策有任何變更，我們會在此頁面更新，並修改「最後更新日期」。重大變更時，我們會透過擴充功能更新說明通知您。</p>
+        </div>
+
+        <div class="section">
+            <h2>9. 聯絡我們</h2>
+            <p>如果您對本隱私政策有任何疑問或建議，歡迎透過以下方式聯絡我們：</p>
+            <ul>
+                <li>透過 Edge Add-ons 商店的「支援」功能聯絡</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>10. 您的權利</h2>
+            <p>您隨時可以：</p>
+            <ul>
+                <li>在擴充功能的選項頁面中查看和修改您的設定</li>
+                <li>透過移除擴充功能來刪除所有本地儲存的資料</li>
+                <li>停止使用擴充功能的任何功能</li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            <p>開發者 保留所有權利。</p>
+            <p>本隱私政策適用於「財報紅綠燈 to Gemini」瀏覽器擴充功能 v1.0</p>
+        </div>
+    </div>
+</body>
+</html>

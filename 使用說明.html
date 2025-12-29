@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>財報紅綠燈 to Gemini & ChatGPT - 使用說明</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Microsoft JhengHei', 'Segoe UI', sans-serif;
+      line-height: 1.8;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 20px;
+    }
+    
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      padding: 50px;
+    }
+    
+    h1 {
+      color: #667eea;
+      margin-bottom: 10px;
+      font-size: 36px;
+      border-bottom: 3px solid #667eea;
+      padding-bottom: 15px;
+    }
+    
+    .version {
+      color: #999;
+      font-size: 14px;
+      margin-bottom: 30px;
+    }
+    
+    h2 {
+      color: #333;
+      margin-top: 40px;
+      margin-bottom: 20px;
+      font-size: 24px;
+      border-left: 5px solid #667eea;
+      padding-left: 15px;
+    }
+    
+    h3 {
+      color: #555;
+      margin-top: 25px;
+      margin-bottom: 15px;
+      font-size: 18px;
+    }
+    
+    p {
+      margin-bottom: 15px;
+      color: #666;
+    }
+    
+    ul, ol {
+      margin-left: 30px;
+      margin-bottom: 20px;
+    }
+    
+    li {
+      margin-bottom: 10px;
+      color: #666;
+    }
+    
+    .feature-box {
+      background: #f8f9ff;
+      border-left: 4px solid #667eea;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 8px;
+    }
+    
+    .warning-box {
+      background: #fff3cd;
+      border-left: 4px solid #ffc107;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 8px;
+    }
+    
+    .success-box {
+      background: #d4edda;
+      border-left: 4px solid #28a745;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 8px;
+    }
+    
+    code {
+      background: #f4f4f4;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: 'Consolas', 'Monaco', monospace;
+      color: #e83e8c;
+    }
+    
+    .step {
+      background: #fff;
+      border: 2px solid #e0e0e0;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 8px;
+      transition: all 0.3s;
+    }
+    
+    .step:hover {
+      border-color: #667eea;
+      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+    }
+    
+    .step-number {
+      display: inline-block;
+      background: #667eea;
+      color: white;
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      border-radius: 50%;
+      margin-right: 10px;
+      font-weight: bold;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+    
+    th, td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: left;
+    }
+    
+    th {
+      background: #667eea;
+      color: white;
+    }
+    
+    tr:nth-child(even) {
+      background: #f9f9f9;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📝 財報紅綠燈 to Gemini & ChatGPT - 使用說明</h1>
+    <p class="version">版本 2.0 | 最後更新: 2025-12-28</p>
+    
+    <h2>🎯 功能概述</h2>
+    <p>這是一個 Chrome 擴充功能,可以自動將網頁內容附加自訂提示詞後傳送到 Google Gemini 或 ChatGPT,並提供股票代號自動連結功能。</p>
+    
+    <div class="feature-box">
+      <h3>✨ 主要功能</h3>
+      <ul>
+        <li><strong>自動附加提示詞</strong>: 在特定網頁自動將提示詞附加到 textarea 尾端</li>
+        <li><strong>一鍵傳送到 Gemini/ChatGPT</strong>: 點擊按鈕即可開啟 AI 並自動貼上內容</li>
+        <li><strong>股票代號自動連結</strong>: 在 Gemini/ChatGPT 回應中自動將四位數字轉換為財報連結</li>
+        <li><strong>自訂提示詞</strong>: 透過設定頁面編輯和管理提示詞</li>
+        <li><strong>偵錯Log開關</strong>: 控制是否在控制台顯示偵錯訊息</li>
+        <li><strong>智慧防重複</strong>: 避免重複附加或貼上內容</li>
+        <li><strong>URL 限制</strong>: 只在指定網址才自動附加提示詞</li>
+      </ul>
+    </div>
+    
+    <h2>🚀 快速開始</h2>
+    
+    <div class="step">
+      <span class="step-number">1</span>
+      <strong>安裝擴充功能</strong>
+      <p>在 Chrome 瀏覽器中載入擴充功能資料夾</p>
+    </div>
+    
+    <div class="step">
+      <span class="step-number">2</span>
+      <strong>設定提示詞</strong>
+      <p>右鍵點擊擴充功能圖示 → 選擇「選項」→ 編輯提示詞 → 點擊「儲存」</p>
+    </div>
+    
+    <div class="step">
+      <span class="step-number">3</span>
+      <strong>開始使用</strong>
+      <p>開啟 <code>https://gd.myftp.org/lb/gpt.asp</code> → 提示詞會自動附加到 textarea</p>
+    </div>
+    
+    <div class="step">
+      <span class="step-number">4</span>
+      <strong>傳送到 AI</strong>
+      <p>點擊頁面上的按鈕 → 自動開啟 Gemini 或 ChatGPT 並貼上內容</p>
+    </div>
+    
+    <h2>⚙️ 詳細使用方法</h2>
+    
+    <h3>📝 設定提示詞</h3>
+    
+    <h4>透過擴充功能圖示 (推薦)</h4>
+    <ol>
+      <li>點擊瀏覽器右上角的拼圖圖示 🧩</li>
+      <li>找到「財報紅綠燈 to Gemini」</li>
+      <li>點擊右側的「⋮」(三個點) → 選擇「選項」</li>
+      <li>在 textarea 中輸入或修改提示詞</li>
+      <li>設定「🐛 顯示偵錯Log」和「🔗 股票代號自動連結」開關</li>
+      <li>點擊「💾 儲存到擴充功能」按鈕</li>
+    </ol>
+    
+    <h3>🔗 股票代號自動連結</h3>
+    <p>在 Gemini 或 ChatGPT 的回應中,四位數字會自動轉換為財報紅綠燈連結。</p>
+    
+    <div class="feature-box">
+      <h4>功能特色</h4>
+      <ul>
+        <li><strong>自動偵測</strong>: 自動將四位數字 (例如: 2330) 轉換為超連結</li>
+        <li><strong>智慧排除</strong>: 排除年份格式 (2024. 2024- 2024/ 2024, 2024 年)</li>
+        <li><strong>連結顏色</strong>: 使用淡藍色 (#A8C7FA) 顯示</li>
+        <li><strong>新分頁開啟</strong>: 點擊後在新分頁開啟財報頁面</li>
+        <li><strong>支援平台</strong>: Gemini 和 ChatGPT 都支援</li>
+      </ul>
+    </div>
+    
+    <h4>範例</h4>
+    <table>
+      <tr>
+        <th>原始文字</th>
+        <th>轉換結果</th>
+      </tr>
+      <tr>
+        <td>台積電 2330</td>
+        <td>台積電 <span style="color: #A8C7FA; text-decoration: underline;">2330</span> (可點擊)</td>
+      </tr>
+      <tr>
+        <td>2024 年</td>
+        <td>2024 年 (不轉換)</td>
+      </tr>
+      <tr>
+        <td>2024-01-01</td>
+        <td>2024-01-01 (不轉換)</td>
+      </tr>
+    </table>
+    
+    <h3>🐛 偵錯Log開關</h3>
+    <p>在選項頁面中,您可以控制是否在瀏覽器控制台顯示偵錯訊息:</p>
+    <ul>
+      <li><strong>開啟 (預設)</strong>: 在控制台顯示所有 "Gemini AutoPaste" 相關的偵錯訊息</li>
+      <li><strong>關閉</strong>: 不顯示任何偵錯訊息,保持控制台清潔</li>
+    </ul>
+    
+    <h3>🔄 自動附加流程</h3>
+    <ol>
+      <li>開啟目標網址: <code>https://gd.myftp.org/lb/gpt.asp</code></li>
+      <li>擴充功能自動偵測 textarea</li>
+      <li>讀取原始內容</li>
+      <li>清除已存在的舊提示詞</li>
+      <li>將提示詞附加到內容尾端</li>
+      <li>自動捲動到 textarea 底部</li>
+    </ol>
+    
+    <h3>🚀 傳送到 Gemini</h3>
+    <ol>
+      <li>在目標網頁點擊藍色 Gemini 按鈕</li>
+      <li>擴充功能讀取 textarea 完整內容</li>
+      <li>自動開啟 Google Gemini 頁面</li>
+      <li>自動貼上內容到 Gemini 輸入框</li>
+      <li>自動點擊送出按鈕</li>
+    </ol>
+    
+    <h3>💬 傳送到 ChatGPT</h3>
+    <ol>
+      <li>在目標網頁點擊綠色「貼」按鈕</li>
+      <li>擴充功能讀取 textarea 完整內容</li>
+      <li>自動開啟 ChatGPT 頁面</li>
+      <li>自動貼上內容到 ChatGPT 輸入框</li>
+      <li><strong>手動檢查後送出</strong> (不會自動送出)</li>
+    </ol>
+    
+    <div class="warning-box">
+      <strong>💡 ChatGPT 注意事項:</strong>
+      <ul>
+        <li>ChatGPT 不會自動送出,請檢查內容後手動點擊送出</li>
+        <li>這是為了讓您有機會檢查和修改內容</li>
+      </ul>
+    </div>
+    
+    <h2>🔍 功能詳解</h2>
+    
+    <h3>智慧防重複機制</h3>
+    <table>
+      <tr>
+        <th>機制</th>
+        <th>說明</th>
+      </tr>
+      <tr>
+        <td>WeakSet 標記</td>
+        <td>使用 JavaScript WeakSet 記錄已處理的 textarea 物件</td>
+      </tr>
+      <tr>
+        <td>Dataset 標記</td>
+        <td>在 textarea 元素上設定 <code>data-gemini-appended="true"</code></td>
+      </tr>
+      <tr>
+        <td>內容檢查</td>
+        <td>使用正則表達式檢查並清除已存在的提示詞</td>
+      </tr>
+      <tr>
+        <td>長度比對</td>
+        <td>檢查內容長度,如果只有提示詞則不貼上到 Gemini</td>
+      </tr>
+    </table>
+    
+    <h3>按鈕圖示說明</h3>
+    <table>
+      <tr>
+        <th>按鈕</th>
+        <th>顏色</th>
+        <th>功能</th>
+      </tr>
+      <tr>
+        <td>藍色「貼」圖示</td>
+        <td>藍色圓角方形</td>
+        <td>傳送到 Gemini (自動送出)</td>
+      </tr>
+      <tr>
+        <td>綠色「貼」圖示</td>
+        <td>綠色圓角方形</td>
+        <td>傳送到 ChatGPT (手動送出)</td>
+      </tr>
+    </table>
+    
+    <h2>🐛 常見問題</h2>
+    
+    <h3>Q: 為什麼沒有自動附加提示詞?</h3>
+    <p><strong>A:</strong> 請檢查:</p>
+    <ul>
+      <li>是否在正確的 URL (<code>https://gd.myftp.org/lb/gpt.asp</code>)</li>
+      <li>頁面是否有 textarea 元素</li>
+      <li>開啟偵錯Log,查看 Console (F12) 是否有錯誤訊息</li>
+    </ul>
+    
+    <h3>Q: 股票代號沒有轉換為連結?</h3>
+    <p><strong>A:</strong> 請確認:</p>
+    <ul>
+      <li>「🔗 股票代號自動連結」開關是否開啟</li>
+      <li>是否在 Gemini 或 ChatGPT 頁面</li>
+      <li>數字是否為四位數字 (不包含年份格式)</li>
+      <li>重新載入外掛後是否重新開啟 AI 頁面</li>
+    </ul>
+    
+    <h3>Q: ChatGPT 沒有自動貼上?</h3>
+    <p><strong>A:</strong> 請檢查:</p>
+    <ul>
+      <li>是否已重新載入外掛</li>
+      <li>是否在點擊綠色「貼」按鈕後才開啟 ChatGPT</li>
+      <li>開啟 Console 查看是否有錯誤訊息</li>
+      <li>確認 ChatGPT 頁面已完全載入 (等待 1.5 秒)</li>
+    </ul>
+    
+    <h3>Q: 提示詞出現重複怎麼辦?</h3>
+    <p><strong>A:</strong> 擴充功能會自動清除重複的提示詞。如果仍有問題,請重新載入擴充功能。</p>
+    
+    <h3>Q: 如何修改提示詞?</h3>
+    <p><strong>A:</strong> 右鍵擴充功能圖示 → 選項 → 編輯 → 儲存</p>
+    
+    <h2>🔧 除錯方法</h2>
+    <ol>
+      <li>確認「🐛 顯示偵錯Log」開關為<strong>開啟</strong>狀態</li>
+      <li>開啟 Chrome DevTools (F12)</li>
+      <li>切換到 Console 標籤</li>
+      <li>查看以 <code>Gemini AutoPaste</code> 開頭的 log 訊息</li>
+      <li>檢查是否有錯誤訊息 (紅色)</li>
+    </ol>
+    
+    <div class="success-box">
+      <strong>💡 除錯技巧:</strong>
+      <ul>
+        <li>來源頁面: 查看 <code>Gemini AutoPaste (Source)</code> 開頭的 log</li>
+        <li>Gemini/ChatGPT 頁面: 查看 <code>Gemini AutoPaste</code> 開頭的 log</li>
+        <li>Background: 右鍵擴充功能 → 檢查背景頁面</li>
+      </ul>
+    </div>
+    
+    <h2>📞 技術支援</h2>
+    <p>如有問題或建議,請聯繫開發團隊。</p>
+    
+    <div class="feature-box">
+      <h3>🎉 感謝使用!</h3>
+      <p>希望這個擴充功能能提升您的工作效率。如果覺得好用,歡迎分享給其他人!</p>
+    </div>
+  </div>
+</body>
+</html>
